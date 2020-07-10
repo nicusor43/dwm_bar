@@ -9,17 +9,16 @@ dwm_resources () {
     MEMUSED=$(free -h | awk '(NR == 2) {print $3}')
     MEMTOT=$(free -h |awk '(NR == 2) {print $2}')
     # CPU temperature
-    CPU=$(sysctl -n hw.sensors.cpu0.temp0 | cut -d. -f1)
-    # Used and total storage in /home (rounded to 1024B)
-    STOUSED=$(df -h | grep '/home$' | awk '{print $3}')
-    STOTOT=$(df -h | grep '/home$' | awk '{print $2}')
-    STOPER=$(df -h | grep '/home$' | awk '{print $5}')
+    CPU=$(top -bn1 | grep "Cpu(s)" | \
+               sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | \
+               awk '{print 100 - $1"%"}')
+  
 
     printf "%s" "$SEP1"
     if [ "$IDENTIFIER" = "unicode" ]; then
-        printf "💻 MEM %s/%s CPU %s STO %s/%s: %s" "$MEMUSED" "$MEMTOT" "$CPU" "$STOUSED" "$STOTOT" "$STOPER"
+        printf "💻 MEM %s/%s CPU %s " "$MEMUSED" "$MEMTOT" "$CPU" 
     else
-        printf "STA | MEM %s/%s CPU %s STO %s/%s: %s" "$MEMUSED" "$MEMTOT" "$CPU" "$STOUSED" "$STOTOT" "$STOPER"
+        printf "STA | MEM %s/%s CPU %s" "$MEMUSED" "$MEMTOT" "$CPU" 
     fi
     printf "%s\n" "$SEP2"
 }

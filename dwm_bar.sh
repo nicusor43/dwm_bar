@@ -18,34 +18,20 @@ DIR=$(dirname "$LOC")
 export IDENTIFIER="unicode"
 
 # Change the charachter(s) used to seperate modules. If two are used, they will be placed at the start and end.
-export SEP1="["
-export SEP2="]"
+export SEP1="| "
 
 # Import the modules
-. "$DIR/bar-functions/dwm_countdown.sh"
-. "$DIR/bar-functions/dwm_alarm.sh"
-. "$DIR/bar-functions/dwm_transmission.sh"
 . "$DIR/bar-functions/dwm_cmus.sh"
-. "$DIR/bar-functions/dwm_mpc.sh"
-. "$DIR/bar-functions/dwm_spotify.sh"
 . "$DIR/bar-functions/dwm_resources.sh"
 . "$DIR/bar-functions/dwm_battery.sh"
-. "$DIR/bar-functions/dwm_mail.sh"
-. "$DIR/bar-functions/dwm_backlight.sh"
 . "$DIR/bar-functions/dwm_alsa.sh"
-. "$DIR/bar-functions/dwm_pulse.sh"
 . "$DIR/bar-functions/dwm_weather.sh"
-. "$DIR/bar-functions/dwm_vpn.sh"
-. "$DIR/bar-functions/dwm_networkmanager.sh"
-. "$DIR/bar-functions/dwm_keyboard.sh"
-. "$DIR/bar-functions/dwm_ccurse.sh"
 . "$DIR/bar-functions/dwm_date.sh"
-. "$DIR/bar-functions/dwm_connman.sh"
-. "$DIR/bar-functions/dwm_loadavg.sh"
+. "$DIR/bar-functions/dwm_backlight.sh"
 
 # Update dwm status bar every second
 while true
 do
-    xsetroot -name "$(dwm_connman)$(dwm_countdown)$(dwm_alarm.sh)$(dwm_transmission)$(dwm_cmus)$(dwm_mpc)$(dwm_spotify)$(dwm_resources)$(dwm_battery)$(dwm_mail)$(dwm_backlight)$(dwm_alsa)$(dwm_pulse)$(dwm_weather)$(dwm_vpn)$(dwm_networkmanager)$(dwm_keyboard)$(dwm_ccurse)$(dwm_date)$(dwm_loadavg)"
-    sleep 1
+    xsetroot -name "$(dwm_cmus)$(dwm_resources)$(dwm_battery)$(dwm_backlight)$(dwm_alsa)$(dwm_weather)$(dwm_date)"
+    sleep .75
 done
